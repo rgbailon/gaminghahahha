@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone - Premium Gaming Consoles</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .font-gaming {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .card-glow:hover {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+        }
+        
+        .neon-border {
+            border: 2px solid transparent;
+            background: linear-gradient(#1a1a2e, #1a1a2e) padding-box,
+                        linear-gradient(135deg, #6366f1, #a855f7, #ec4899) border-box;
+        }
+        
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-glow:hover::before {
+            left: 100%;
+        }
+        
+        .cart-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-purple-500/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-gamepad text-3xl text-purple-500 mr-3"></i>
+                    <span class="font-gaming text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">GameZone</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="hover:text-purple-400 transition font-medium">Home</a>
+                    <a href="#products" class="hover:text-purple-400 transition font-medium">Consoles</a>
+                    <a href="#deals" class="hover:text-purple-400 transition font-medium">Deals</a>
+                    <a href="#about" class="hover:text-purple-400 transition font-medium">About</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="hover:text-purple-400 transition">
+                        <i class="fas fa-search text-xl"></i>
+                    </button>
+                    <button onclick="toggleCart()" class="relative hover:text-purple-400 transition">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cart-count" class="cart-badge absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h1 class="font-gaming text-4xl md:text-6xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">LEVEL UP</span>
+                        <br>Your Gaming
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8">Discover the latest gaming consoles with unbeatable prices. Free shipping on orders over $50!</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#products" class="btn-glow bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3 rounded-full font-bold text-lg hover:from-purple-500 hover:to-pink-500 transition">
+                            Shop Now <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#deals" class="border-2 border-purple-500 px-8 py-3 rounded-full font-bold text-lg hover:bg-purple-500/20 transition">
+                            View Deals
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 rounded-full blur-3xl"></div>
+                        <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&h=400&fit=crop" alt="Gaming Console" class="relative rounded-2xl shadow-2xl w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-12 px-4 border-y border-purple-500/20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="flex items-center justify-center gap-4">
+                <i class="fas fa-truck text-3xl text-purple-400"></i>
+                <div>
+                    <h3 class="font-bold">Free Shipping</h3>
+                    <p class="text-gray-400 text-sm">On orders over $50</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-4">
+                <i class="fas fa-shield-alt text-3xl text-purple-400"></i>
+                <div>
+                    <h3 class="font-bold">2 Year Warranty</h3>
+                    <p class="text-gray-400 text-sm">Full coverage</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-4">
+                <i class="fas fa-undo text-3xl text-purple-400"></i>
+                <div>
+                    <h3 class="font-bold">30 Day Returns</h3>
+                    <p class="text-gray-400 text-sm">Easy returns</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-4">
+                <i class="fas fa-headset text-3xl text-purple-400"></i>
+                <div>
+                    <h3 class="font-bold">24/7 Support</h3>
+                    <p class="text-gray-400 text-sm">Expert help</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-gaming text-3xl md:text-4xl font-bold mb-4">
+                    <span class="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">Featured Consoles</span>
+                </h2>
+                <p class="text-gray-400 text-lg">Choose your weapon of choice</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2 rounded-full bg-purple-600 hover:bg-purple-500 transition font-medium" data-filter="all">All</button>
+                <button onclick="filterProducts('playstation')" class="filter-btn px-6 py-2 rounded-full bg-gray-700 hover:bg-purple-500 transition font-medium" data-filter="playstation">PlayStation</button>
+                <button onclick="filterProducts('xbox')" class="filter-btn px-6 py-2 rounded-full bg-gray-700 hover:bg-purple-500 transition font-medium" data-filter="xbox">Xbox</button>
+                <button onclick="filterProducts('nintendo')" class="filter-btn px-6 py-2 rounded-full bg-gray-700 hover:bg-purple-500 transition font-medium" data-filter="nintendo">Nintendo</button>
+            </div>
+            
+            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section id="deals" class="py-16 px-4 bg-black/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="neon-border rounded-3xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="text-center md:text-left">
+                        <span class="bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-bold">LIMITED TIME</span>
+                        <h2 class="font-gaming text-3xl md:text-4xl font-bold mt-4 mb-2">MEGA SALE</h2>
+                        <p class="text-2xl text-gray-300 mb-4">Up to <span class="text-pink-500 font-bold">40% OFF</span> on selected consoles</p>
+                        <div class="flex gap-4 justify-center md:justify-start mb-6">
+                            <div class="bg-purple-900/50 px-4 py-2 rounded-lg text-center">
+                                <span id="days" class="font-gaming text-2xl font-bold">02</span>
+                                <p class="text-xs text-gray-400">Days</p>
+                            </div>
+                            <div class="bg-purple-900/50 px-4 py-2 rounded-lg text-center">
+                                <span id="hours" class="font-gaming text-2xl font-bold">18</span>
+                                <p class="text-xs text-gray-400">Hours</p>
+                            </div>
+                            <div class="bg-purple-900/50 px-4 py-2 rounded-lg text-center">
+                                <span id="minutes" class="font-gaming text-2xl font-bold">45</span>
+                                <p class="text-xs text-gray-400">Minutes</p>
+                            </div>
+                            <div class="bg-purple-900/50 px-4 py-2 rounded-lg text-center">
+                                <span id="seconds" class="font-gaming text-2xl font-bold">30</span>
+                                <p class="text-xs text-gray-400">Seconds</p>
+                            </div>
+                        </div>
+                        <a href="#products" class="btn-glow inline-block bg-gradient-to-r from-pink-600 to-red-600 px-8 py-3 rounded-full font-bold hover:from-pink-500 hover:to-red-500 transition">
+                            Shop the Sale
+                        </a>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=400&h=300&fit=crop" alt="Sale" class="rounded-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop" alt="Gaming Setup" class="rounded-2xl shadow-2xl">
+                </div>
+                <div>
+                    <h2 class="font-gaming text-3xl md:text-4xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">Why Choose Us?</span>
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="bg-purple-600 p-3 rounded-lg h-fit">
+                                <i class="fas fa-check text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-1">Authentic Products</h3>
+                                <p class="text-gray-400">100% genuine consoles directly from manufacturers</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="bg-purple-600 p-3 rounded-lg h-fit">
+                                <i class="fas fa-tag text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-1">Best Prices</h3>
+                                <p class="text-gray-400">Price match guarantee on all products</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="bg-purple-600 p-3 rounded-lg h-fit">
+                                <i class="fas fa-bolt text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-1">Fast Delivery</h3>
+                                <p class="text-gray-400">Same-day dispatch on orders before 2pm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 px-4 bg-black/30">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="font-gaming text-2xl md:text-3xl font-bold mb-4">Stay in the Game</h2>
+            <p class="text-gray-400 mb-8">Subscribe for exclusive deals, new releases, and gaming news!</p>
+            <form class="flex flex-col sm:flex-row gap-4 justify-center">
+                <input type="email" placeholder="Enter your email" class="px-6 py-3 rounded-full bg-gray-800 border border-purple-500/30 focus:border-purple-500 focus:outline-none flex-grow max-w-md">
+                <button type="submit" class="btn-glow bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3 rounded-full font-bold hover:from-purple-500 hover:to-pink-500 transition">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-purple-500/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-gamepad text-2xl text-purple-500 mr-2"></i>
+                        <span class="font-gaming text-xl font-bold">GameZone</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Your ultimate destination for gaming consoles and accessories.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-400 transition">Home</a></li>
+                        <li><a href="#products" class="hover:text-purple-400 transition">Products</a></li>
+                        <li><a href="#deals" class="hover:text-purple-400 transition">Deals</a></li>
+                        <li><a href="#about" class="hover:text-purple-400 transition">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-400 transition">FAQ</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Shipping</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Returns</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2024 GameZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full md:w-96 bg-gray-900 shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-6 border-b border-gray-700">
+                <h2 class="font-gaming text-xl font-bold">Your Cart</h2>
+                <button onclick="toggleCart()" class="hover:text-purple-400 transition">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div id="cart-items" class="flex-grow overflow-y-auto p-6">
+                <p class="text-gray-400 text-center">Your cart is empty</p>
+            </div>
+            <div class="p-6 border-t border-gray-700">
+                <div class="flex justify-between mb-4">
+                    <span class="text-gray-400">Subtotal:</span>
+                    <span id="cart-total" class="font-bold text-xl">$0.00</span>
+                </div>
+                <button onclick="checkout()" class="btn-glow w-full bg-gradient-to-r from-purple-600 to-pink-600 py-3 rounded-full font-bold hover:from-purple-500 hover:to-pink-500 transition">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/50 hidden z-40" onclick="toggleCart()"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <!-- Product Review Modal -->
+    <div id="product-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 overflow-y-auto">
+        <div class="min-h-screen px-4 py-8 flex items-center justify-center">
+            <div class="bg-gray-900 rounded-3xl max-w-5xl w-full relative overflow-hidden">
+                <!-- Close Button -->
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 bg-gray-800 hover:bg-purple-600 p-3 rounded-full transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                
+                <div class="grid md:grid-cols-2 gap-0">
+                    <!-- Product Image Section -->
+                    <div class="bg-gray-800 p-8 flex flex-col">
+                        <div class="relative flex-grow flex items-center justify-center">
+                            <span id="modal-sale-badge" class="absolute top-0 left-0 bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-bold hidden">SALE</span>
+                            <img id="modal-product-image" src="" alt="" class="max-w-full max-h-80 object-contain rounded-xl">
+                        </div>
+                        <!-- Thumbnail Gallery (for future database integration) -->
+                        <div id="modal-thumbnails" class="flex gap-3 mt-6 justify-center">
+                            <!-- Thumbnails will be dynamically inserted -->
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details Section -->
+                    <div class="p-8">
+                        <span id="modal-category" class="text-purple-400 text-sm font-bold uppercase tracking-wider"></span>
+                        <h2 id="modal-product-name" class="font-gaming text-2xl md:text-3xl font-bold mt-2 mb-4"></h2>
+                        
+                        <!-- Rating Summary -->
+                        <div class="flex items-center gap-4 mb-4">
+                            <div id="modal-rating-stars" class="flex items-center gap-1"></div>
+                            <span id="modal-rating-text" class="text-gray-400"></span>
+                            <a href="#reviews-section" onclick="scrollToReviews()" class="text-purple-400 hover:underline">See all reviews</a>
+                        </div>
+                        
+                        <!-- Price -->
+                        <div class="flex items-center gap-4 mb-6">
+                            <span id="modal-price" class="text-3xl font-bold text-purple-400"></span>
+                            <span id="modal-original-price" class="text-xl text-gray-500 line-through"></span>
+                            <span id="modal-discount" class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold hidden"></span>
+                        </div>
+                        
+                        <!-- Description -->
+                        <p id="modal-description" class="text-gray-300 mb-6"></p>
+                        
+                        <!-- Product Specs -->
+                        <div id="modal-specs" class="bg-gray-800 rounded-xl p-4 mb-6">
+                            <h4 class="font-bold mb-3">Specifications</h4>
+                            <div id="specs-list" class="space-y-2 text-sm">
+                                <!-- Specs will be dynamically inserted -->
+                            </div>
+                        </div>
+                        
+                        <!-- Quantity Selector -->
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-gray-400">Quantity:</span>
+                            <div class="flex items-center bg-gray-800 rounded-full">
+                                <button onclick="updateModalQuantity(-1)" class="px-4 py-2 hover:text-purple-400 transition">-</button>
+                                <span id="modal-quantity" class="px-4 py-2 font-bold">1</span>
+                                <button onclick="updateModalQuantity(1)" class="px-4 py-2 hover:text-purple-400 transition">+</button>
+                            </div>
+                            <span id="modal-stock" class="text-green-400 text-sm"><i class="fas fa-check-circle mr-1"></i>In Stock</span>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="addToCartFromModal()" class="btn-glow flex-1 bg-gradient-to-r from-purple-600 to-pink-600 py-3 rounded-full font-bold hover:from-purple-500 hover:to-pink-500 transition">
+                                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                            </button>
+                            <button onclick="buyNow()" class="flex-1 border-2 border-purple-500 py-3 rounded-full font-bold hover:bg-purple-500/20 transition">
+                                <i class="fas fa-bolt mr-2"></i>Buy Now
+                            </button>
+                        </div>
+                        
+                        <!-- Wishlist & Share -->
+                        <div class="flex gap-4 mt-4">
+                            <button onclick="toggleWishlist()" id="wishlist-btn" class="flex items-center gap-2 text-gray-400 hover:text-pink-500 transition">
+                                <i class="far fa-heart"></i> Add to Wishlist
+                            </button>
+                            <button onclick="shareProduct()" class="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reviews Section -->
+                <div id="reviews-section" class="border-t border-gray-700 p-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+                        <h3 class="font-gaming text-2xl font-bold mb-4 md:mb-0">Customer Reviews</h3>
+                        <button onclick="openReviewForm()" class="btn-glow bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full font-bold hover:from-purple-500 hover:to-pink-500 transition">
+                            <i class="fas fa-pen mr-2"></i>Write a Review
+                        </button>
+                    </div>
+                    
+                    <!-- Rating Overview -->
+                    <div class="grid md:grid-cols-3 gap-8 mb-8">
+                        <!-- Average Rating -->
+                        <div class="bg-gray-800 rounded-xl p-6 text-center">
+                            <div id="average-rating" class="text-5xl font-bold text-purple-400 mb-2">4.5</div>
+                            <div id="average-stars" class="flex justify-center gap-1 mb-2"></div>
+                            <p id="total-reviews" class="text-gray-400">Based on 128 reviews</p>
+                        </div>
+                        
+                        <!-- Rating Breakdown -->
+                        <div class="md:col-span-2 bg-gray-800 rounded-xl p-6">
+                            <div class="space-y-3" id="rating-breakdown">
+                                <!-- Rating bars will be dynamically inserted -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Review Filters -->
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <button onclick="filterReviews('all')" class="review-filter-btn active px-4 py-2 rounded-full bg-purple-600 text-sm font-medium" data-filter="all">All Reviews</button>
+                        <button onclick="filterReviews(5)" class="review-filter-btn px-4 py-2 rounded-full bg-gray-700 hover:bg-purple-600 text-sm font-medium transition" data-filter="5">5 Stars</button>
+                        <button onclick="filterReviews(4)" class="review-filter-btn px-4 py-2 rounded-full bg-gray-700 hover:bg-purple-600 text-sm font-medium transition" data-filter="4">4 Stars</button>
+                        <button onclick="filterReviews(3)" class="review-filter-btn px-4 py-2 rounded-full bg-gray-700 hover:bg-purple-600 text-sm font-medium transition" data-filter="3">3 Stars</button>
+                        <button onclick="filterReviews(2)" class="review-filter-btn px-4 py-2 rounded-full bg-gray-700 hover:bg-purple-600 text-sm font-medium transition" data-filter="2">2 Stars</button>
+                        <button onclick="filterReviews(1)" class="review-filter-btn px-4 py-2 rounded-full bg-gray-700 hover:bg-purple-600 text-sm font-medium transition" data-filter="1">1 Star</button>
+                    </div>
+                    
+                    <!-- Reviews List -->
+                    <div id="reviews-list" class="space-y-6">
+                        <!-- Reviews will be dynamically inserted -->
+                    </div>
+                    
+                    <!-- Load More Reviews -->
+                    <div class="text-center mt-8">
+                        <button onclick="loadMoreReviews()" id="load-more-btn" class="border-2 border-purple-500 px-8 py-3 rounded-full font-bold hover:bg-purple-500/20 transition">
+                            Load More Reviews
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Write Review Modal -->
+    <div id="review-form-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-60 overflow-y-auto">
+        <div class="min-h-screen px-4 py-8 flex items-center justify-center">
+            <div class="bg-gray-900 rounded-3xl max-w-lg w-full p-8 relative">
+                <button onclick="closeReviewForm()" class="absolute top-4 right-4 bg-gray-800 hover:bg-purple-600 p-3 rounded-full transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                
+                <h3 class="font-gaming text-2xl font-bold mb-6">Write a Review</h3>
+                
+                <form id="review-form" onsubmit="submitReview(event)">
+                    <!-- Rating Selection -->
+                    <div class="mb-6">
+                        <label class="block text-gray-400 mb-2">Your Rating</label>
+                        <div id="rating-select" class="flex gap-2">
+                            <button type="button" onclick="setReviewRating(1)" class="rating-star text-3xl text-gray-600 hover:text-yellow-400 transition"><i class="fas fa-star"></i></button>
+                            <button type="button" onclick="setReviewRating(2)" class="rating-star text-3xl text-gray-600 hover:text-yellow-400 transition"><i class="fas fa-star"></i></button>
+                            <button type="button" onclick="setReviewRating(3)" class="rating-star text-3xl text-gray-600 hover:text-yellow-400 transition"><i class="fas fa-star"></i></button>
+                            <button type="button" onclick="setReviewRating(4)" class="rating-star text-3xl text-gray-600 hover:text-yellow-400 transition"><i class="fas fa-star"></i></button>
+                            <button type="button" onclick="setReviewRating(5)" class="rating-star text-3xl text-gray-600 hover:text-yellow-400 transition"><i class="fas fa-star"></i></button>
+                        </div>
+                        <input type="hidden" id="review-rating" value="0">
+                    </div>
+                    
+                    <!-- Name -->
+                    <div class="mb-4">
+                        <label class="block text-gray-400 mb-2">Your Name</label>
+                        <input type="text" id="review-name" required class="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 focus:border-purple-500 focus:outline-none" placeholder="Enter your name">
+                    </div>
+                    
+                    <!-- Review Title -->
+                    <div class="mb-4">
+                        <label class="block text-gray-400 mb-2">Review Title</label>
+                        <input type="text" id="review-title" required class="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 focus:border-purple-500 focus:outline-none" placeholder="Summarize your experience">
+                    </div>
+                    
+                    <!-- Review Content -->
+                    <div class="mb-6">
+                        <label class="block text-gray-400 mb-2">Your Review</label>
+                        <textarea id="review-content" required rows="4" class="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 focus:border-purple-500 focus:outline-none resize-none" placeholder="Share your experience with this product"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-glow w-full bg-gradient-to-r from-purple-600 to-pink-600 py-3 rounded-full font-bold hover:from-purple-500 hover:to-pink-500 transition">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product Data - Ready for database integration
+        // In production, this would be fetched from: GET /api/products
+        const products = [
+            { 
+                id: 1, 
+                name: "PlayStation 5", 
+                category: "playstation", 
+                price: 499.99, 
+                originalPrice: 549.99, 
+                image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop", 
+                images: [
+                    "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop",
+                    "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&h=300&fit=crop"
+                ],
+                rating: 4.8, 
+                sale: true,
+                description: "Experience lightning-fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers and 3D Audio, and an all-new generation of incredible PlayStation games.",
+                specs: {
+                    "Storage": "825GB SSD",
+                    "Resolution": "Up to 4K 120Hz",
+                    "Audio": "Tempest 3D AudioTech",
+                    "Connectivity": "Wi-Fi 6, Bluetooth 5.1"
+                },
+                stock: 15
+            },
+            { 
+                id: 2, 
+                name: "Xbox Series X", 
+                category: "xbox", 
+                price: 499.99, 
+                originalPrice: null, 
+                image: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=400&h=300&fit=crop",
+                images: [
+                    "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=400&h=300&fit=crop"
+                ],
+                rating: 4.7, 
+                sale: false,
+                description: "The fastest, most powerful Xbox ever. Play thousands of titles from four generations of consoles with Smart Delivery and Quick Resume.",
+                specs: {
+                    "Storage": "1TB SSD",
+                    "Resolution": "Up to 4K 120Hz",
+                    "Processor": "Custom AMD Zen 2",
+                    "GPU": "12 TFLOPS RDNA 2"
+                },
+                stock: 8
+            },
+            { 
+                id: 3, 
+                name: "Nintendo Switch OLED", 
+                category: "nintendo", 
+                price: 349.99, 
+                originalPrice: 379.99, 
+                image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400&h=300&fit=crop",
+                images: [
+                    "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400&h=300&fit=crop"
+                ],
+                rating: 4.6, 
+                sale: true,
+                description: "Featuring a vibrant 7-inch OLED screen, a wide adjustable stand, enhanced audio, and 64GB of internal storage.",
+                specs: {
+                    "Screen": "7-inch OLED",
+                    "Storage": "64GB Internal",
+                    "Battery": "4.5-9 hours",
+                    "Modes": "TV, Tabletop, Handheld"
+                },
+                stock: 22
+            },
+            { 
+                id: 4, 
+                name: "PlayStation 5 Digital", 
+                category: "playstation", 
+                price: 399.99, 
+                originalPrice: 449.99, 
+                image: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&h=300&fit=crop",
+                images: [
+                    "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=400&h=300&fit=crop"
+                ],
+                rating: 4.7, 
+                sale: true,
+                description: "The PS5 Digital Edition is an all-digital version of the PS5 console with no disc drive. Sign in to your account for PlayStation Network to access your digital games.",
+                specs: {
+                    "Storage": "825GB SSD",
+                    "Resolution": "Up to 4K 120Hz",
+                    "Drive": "Digital Only",
+                    "Audio": "Tempest 3D AudioTech"
+                },
+                stock: 12
+            },
+            { 
+                id: 5, 
+                name: "Xbox Series S", 
+                category: "xbox", 
+                price: 299.99, 
+                originalPrice: null, 
+                image: "https://images.unsplash.com/photo-1612801799890-4ba4760b6590?w=400&h=300&fit=crop",
+                images: [
+                    "https://images.unsplash.com/photo-1612801799890-4ba4760b6590?w=400&h=300&fit=crop"
+                ],
+                rating: 4.5, 
+                sale: false,
+                description: "Go all-digital and notes next-gen performance in the smallest Xbox ever. Experience high frame rate gaming at up to 120 fps.",
+                specs: {
+                    "Storage": "512GB SSD",
+                    "Resolution": "Up to 1440p 120Hz",
+                    "Processor": "Custom AMD Zen 2",
+                    "GPU": "4 TFLOPS RDNA 2"
+                },
+                stock: 30
+            },
+            { 
+                id: 6, 
+                name: "Nintendo Switch Lite", 
+                category: "nintendo", 
+                price: 199.99, 
+                originalPrice: null, 
+                image: "https://images.unsplash.com/photo-1569089630965-daa2a6e9f05e?w=400&h=300&fit=crop",
+                images: [
+                    "https://images.unsplash.com/photo-1569089630965-daa2a6e9f05e?w=400&h=300&fit=crop"
+                ],
+                rating: 4.4, 
+                sale: false,
+                description: "Handheld Nintendo Switch gaming at a great price. Compact and lightweight, perfect for gaming on the go.",
+                specs: {
+                    "Screen": "5.5-inch LCD",
+                    "Storage": "32GB Internal",
+                    "Battery": "3-7 hours",
+                    "Modes": "Handheld Only"
+                },
+                stock: 45
+            },
+            { 
+                id: 7, 
+                name: "PS5 DualSense Controller", 
+                category: "playstation", 
+                price: 69.99, 
+                originalPrice: 79.99, 
+                image: "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=400&h=300&fit=crop",
+                images: [
+                    "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=400&h=300&fit=crop"
+                ],
+                rating: 4.9, 
+                sale: true,
+                description: "Discover a deeper, highly immersive gaming experience with the innovative PS5 controller, featuring haptic feedback and adaptive triggers.",
+                specs: {
+                    "Connectivity": "USB-C, Bluetooth",
+                    "Battery": "Up to 12 hours",
+                    "Features": "Haptic Feedback, Adaptive Triggers",
+                    "Audio": "Built-in Microphone"
+                },
+                stock: 50
+            },
+            { 
+                id: 8, 
+                name: "Xbox Elite Controller", 
+                category: "xbox", 
+                price: 179.99, 
+                originalPrice: null, 
+                image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=400&h=300&fit=crop",
+                images: [
+                    "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=400&h=300&fit=crop"
+                ],
+                rating: 4.8, 
+                sale: false,
+                description: "Designed for the elite gamer with adjustable-tension thumbsticks, shorter hair trigger locks, and wrap-around rubberized grip.",
+                specs: {
+                    "Connectivity": "USB-C, Bluetooth, Xbox Wireless",
+                    "Battery": "Up to 40 hours",
+                    "Features": "Adjustable Tension, Hair Triggers",
+                    "Compatibility": "Xbox, PC"
+                },
+                stock: 18
+            },
+        ];
+
+        // Reviews Data - Ready for database integration
+        // In production, this would be fetched from: GET /api/products/{id}/reviews
+        const reviewsDatabase = {
+            1: [
+                { id: 1, productId: 1, name: "Alex Gaming", rating: 5, title: "Best console ever!", content: "The PS5 is absolutely amazing. The graphics are incredible and the DualSense controller is a game-changer. Loading times are virtually non-existent!", date: "2024-01-15", helpful: 45, verified: true },
+                { id: 2, productId: 1, name: "Sarah M.", rating: 5, title: "Worth every penny", content: "I was hesitant to upgrade from my PS4, but I'm so glad I did. The haptic feedback in games like Astro's Playroom is incredible.", date: "2024-01-10", helpful: 32, verified: true },
+                { id: 3, productId: 1, name: "Mike R.", rating: 4, title: "Great but hard to find games", content: "The console itself is fantastic, but I wish there were more exclusive games available. Still, playing PS4 games with the improvements is great.", date: "2024-01-08", helpful: 18, verified: false },
+                { id: 4, productId: 1, name: "Jennifer L.", rating: 5, title: "Silent and powerful", content: "I can barely hear it running even during intense gaming sessions. The SSD makes such a huge difference.", date: "2024-01-05", helpful: 28, verified: true },
+                { id: 5, productId: 1, name: "David K.", rating: 4, title: "Excellent performance", content: "Ray tracing looks amazing and the 4K gaming is smooth. Only wish it was a bit smaller.", date: "2024-01-02", helpful: 15, verified: true }
+            ],
+            2: [
+                { id: 6, productId: 2, name: "Chris P.", rating: 5, title: "Game Pass is incredible value", content: "The Xbox Series X combined with Game Pass is unbeatable. So many games to play from day one!", date: "2024-01-14", helpful: 52, verified: true },
+                { id: 7, productId: 2, name: "Emily W.", rating: 5, title: "Perfect for my setup", content: "Quick Resume is a game-changer. I can switch between multiple games instantly!", date: "2024-01-11", helpful: 38, verified: true },
+                { id: 8, productId: 2, name: "Tom H.", rating: 4, title: "Powerful but large", content: "It's definitely a beast of a machine. Make sure you have space for it!", date: "2024-01-07", helpful: 22, verified: false }
+            ],
+            3: [
+                { id: 9, productId: 3, name: "Nintendo Fan", rating: 5, title: "OLED screen is gorgeous", content: "The upgrade to OLED makes such a difference, especially in handheld mode. Colors pop like never before!", date: "2024-01-13", helpful: 41, verified: true },
+                { id: 10, productId: 3, name: "Parent Gamer", rating: 4, title: "Great family console", content: "Perfect for family gaming nights. The kids love it and so do I!", date: "2024-01-09", helpful: 29, verified: true }
+            ],
+            4: [
+                { id: 11, productId: 4, name: "Digital Only", rating: 5, title: "No disc, no problem", content: "I haven't bought a physical game in years anyway. This was perfect for me and saved some money!", date: "2024-01-12", helpful: 35, verified: true }
+            ],
+            5: [
+                { id: 12, productId: 5, name: "Budget Gamer", rating: 5, title: "Best value in gaming", content: "For $299 you can't beat it. Plays all the latest games and looks great on my 1440p monitor.", date: "2024-01-11", helpful: 48, verified: true }
+            ],
+            6: [
+                { id: 13, productId: 6, name: "Commuter", rating: 4, title: "Perfect for travel", content: "I use this on my daily train commute. Battery life is solid and it's so portable.", date: "2024-01-10", helpful: 25, verified: true }
+            ],
+            7: [
+                { id: 14, productId: 7, name: "Controller Enthusiast", rating: 5, title: "Revolutionary controller", content: "The haptic feedback and adaptive triggers add so much immersion. Playing Returnal with this is incredible!", date: "2024-01-14", helpful: 56, verified: true },
+                { id: 15, productId: 7, name: "Longtime Gamer", rating: 5, title: "Best controller ever made", content: "I've been gaming for 30 years and this is hands down the best controller I've ever used.", date: "2024-01-08", helpful: 42, verified: true }
+            ],
+            8: [
+                { id: 16, productId: 8, name: "Pro Player", rating: 5, title: "Professional quality", content: "The customization options are endless. Paddle buttons give me a real competitive edge.", date: "2024-01-13", helpful: 38, verified: true }
+            ]
+        };
+
+        let cart = [];
+        let currentFilter = 'all';
+        let currentProductId = null;
+        let modalQuantity = 1;
+        let currentReviewFilter = 'all';
+        let displayedReviews = 3;
+        let wishlist = [];
+
+        // Render Products - Changed button to View Product
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('products-grid');
+            const filteredProducts = filter === 'all' ? products : products.filter(p => p.category === filter);
+            
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="bg-gray-800/50 rounded-2xl overflow-hidden card-glow transition-all duration-300 hover:-translate-y-2" data-category="${product.category}">
+                    <div class="relative cursor-pointer" onclick="openProductModal(${product.id})">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                        ${product.sale ? '<span class="absolute top-3 left-3 bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold">SALE</span>' : ''}
+                        <div class="absolute inset-0 bg-black/0 hover:bg-black/20 transition flex items-center justify-center opacity-0 hover:opacity-100">
+                            <span class="bg-purple-600 px-4 py-2 rounded-full font-bold">View Details</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-1 mb-2">
+                            ${generateStars(product.rating)}
+                            <span class="text-gray-400 text-sm ml-2">(${getProductReviews(product.id).length})</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">${product.name}</h3>
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="text-2xl font-bold text-purple-400">${product.price}</span>
+                            ${product.originalPrice ? `<span class="text-gray-500 line-through">${product.originalPrice}</span>` : ''}
+                        </div>
+                        <button onclick="openProductModal(${product.id})" class="btn-glow w-full bg-gradient-to-r from-purple-600 to-pink-600 py-2 rounded-full font-bold hover:from-purple-500 hover:to-pink-500 transition">
+                            <i class="fas fa-eye mr-2"></i>View Product
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Generate star rating HTML
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            let html = '';
+            
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    html += '<i class="fas fa-star text-yellow-400 text-sm"></i>';
+                } else if (i === fullStars && hasHalfStar) {
+                    html += '<i class="fas fa-star-half-alt text-yellow-400 text-sm"></i>';
+                } else {
+                    html += '<i class="fas fa-star text-gray-600 text-sm"></i>';
+                }
+            }
+            return html;
+        }
+
+        // Get reviews for a product
+        function getProductReviews(productId) {
+            return reviewsDatabase[productId] || [];
+        }
+
+        // Open Product Modal
+        function openProductModal(productId) {
+            currentProductId = productId;
+            modalQuantity = 1;
+            displayedReviews = 3;
+            currentReviewFilter = 'all';
+            
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            // Update modal content
+            document.getElementById('modal-product-image').src = product.image;
+            document.getElementById('modal-product-image').alt = product.name;
+            document.getElementById('modal-product-name').textContent = product.name;
+            document.getElementById('modal-category').textContent = product.category;
+            document.getElementById('modal-price').textContent = `${product.price}`;
+            document.getElementById('modal-description').textContent = product.description;
+            document.getElementById('modal-quantity').textContent = modalQuantity;
+            
+            // Sale badge
+            const saleBadge = document.getElementById('modal-sale-badge');
+            if (product.sale) {
+                saleBadge.classList.remove('hidden');
+            } else {
+                saleBadge.classList.add('hidden');
+            }
+            
+            // Original price and discount
+            const originalPriceEl = document.getElementById('modal-original-price');
+            const discountEl = document.getElementById('modal-discount');
+            if (product.originalPrice) {
+                originalPriceEl.textContent = `${product.originalPrice}`;
+                originalPriceEl.classList.remove('hidden');
+                const discount = Math.round((1 - product.price / product.originalPrice) * 100);
+                discountEl.textContent = `${discount}% OFF`;
+                discountEl.classList.remove('hidden');
+            } else {
+                originalPriceEl.classList.add('hidden');
+                discountEl.classList.add('hidden');
+            }
+            
+            // Rating
+            const reviews = getProductReviews(productId);
+            document.getElementById('modal-rating-stars').innerHTML = generateStars(product.rating);
+            document.getElementById('modal-rating-text').textContent = `${product.rating} out of 5`;
+            
+            // Specs
+            const specsList = document.getElementById('specs-list');
+            specsList.innerHTML = Object.entries(product.specs).map(([key, value]) => `
+                <div class="flex justify-between">
+                    <span class="text-gray-400">${key}:</span>
+                    <span class="text-white">${value}</span>
+                </div>
+            `).join('');
+            
+            // Stock status
+            const stockEl = document.getElementById('modal-stock');
+            if (product.stock > 10) {
+                stockEl.innerHTML = '<i class="fas fa-check-circle mr-1"></i>In Stock';
+                stockEl.className = 'text-green-400 text-sm';
+            } else if (product.stock > 0) {
+                stockEl.innerHTML = `<i class="fas fa-exclamation-circle mr-1"></i>Only ${product.stock} left`;
+                stockEl.className = 'text-yellow-400 text-sm';
+            } else {
+                stockEl.innerHTML = '<i class="fas fa-times-circle mr-1"></i>Out of Stock';
+                stockEl.className = 'text-red-400 text-sm';
+            }
+            
+            // Thumbnails
+            const thumbnails = document.getElementById('modal-thumbnails');
+            thumbnails.innerHTML = product.images.map((img, idx) => `
+                <button onclick="changeMainImage('${img}')" class="w-16 h-16 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-purple-500' : 'border-transparent'} hover:border-purple-500 transition">
+                    <img src="${img}" alt="Thumbnail ${idx + 1}" class="w-full h-full object-cover">
+                </button>
+            `).join('');
+            
+            // Wishlist button
+            updateWishlistButton();
+            
+            // Load reviews section
+            loadReviewsSection(productId);
+            
+            // Show modal
+            document.getElementById('product-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Change main product image
+        function changeMainImage(src) {
+            document.getElementById('modal-product-image').src = src;
+            // Update thumbnail borders
+            document.querySelectorAll('#modal-thumbnails button').forEach(btn => {
+                const img = btn.querySelector('img');
+                if (img.src === src) {
+                    btn.classList.add('border-purple-500');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('border-purple-500');
+                    btn.classList.add('border-transparent');
+                }
+            });
+        }
+
+        // Close Product Modal
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Update modal quantity
+        function updateModalQuantity(change) {
+            const product = products.find(p => p.id === currentProductId);
+            modalQuantity = Math.max(1, Math.min(modalQuantity + change, product?.stock || 99));
+            document.getElementById('modal-quantity').textContent = modalQuantity;
+        }
+
+        // Add to cart from modal
+        function addToCartFromModal() {
+            const product = products.find(p => p.id === currentProductId);
+            if (!product) return;
+            
+            const existingItem = cart.find(item => item.id === currentProductId);
+            
+            if (existingItem) {
+                existingItem.quantity += modalQuantity;
+            } else {
+                cart.push({ ...product, quantity: modalQuantity });
+            }
+            
+            updateCart();
+            showToast(`${modalQuantity}x ${product.name} added to cart!`);
+        }
+
+        // Buy now
+        function buyNow() {
+            addToCartFromModal();
+            closeProductModal();
+            toggleCart();
+        }
+
+        // Toggle wishlist
+        function toggleWishlist() {
+            const idx = wishlist.indexOf(currentProductId);
+            if (idx > -1) {
+                wishlist.splice(idx, 1);
+                showToast('Removed from wishlist');
+            } else {
+                wishlist.push(currentProductId);
+                showToast('Added to wishlist');
+            }
+            updateWishlistButton();
+        }
+
+        // Update wishlist button
+        function updateWishlistButton() {
+            const btn = document.getElementById('wishlist-btn');
+            const isInWishlist = wishlist.includes(currentProductId);
+            btn.innerHTML = isInWishlist 
+                ? '<i class="fas fa-heart text-pink-500"></i> In Wishlist'
+                : '<i class="far fa-heart"></i> Add to Wishlist';
+        }
+
+        // Share product
+        function shareProduct() {
+            const product = products.find(p => p.id === currentProductId);
+            if (navigator.share) {
+                navigator.share({
+                    title: product.name,
+                    text: `Check out ${product.name} at GameZone!`,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                showToast('Link copied to clipboard!');
+            }
+        }
+
+        // Load reviews section
+        function loadReviewsSection(productId) {
+            const reviews = getProductReviews(productId);
+            const product = products.find(p => p.id === productId);
+            
+            // Average rating
+            document.getElementById('average-rating').textContent = product.rating.toFixed(1);
+            document.getElementById('average-stars').innerHTML = generateStars(product.rating);
+            document.getElementById('total-reviews').textContent = `Based on ${reviews.length} reviews`;
+            
+            // Rating breakdown
+            const breakdown = document.getElementById('rating-breakdown');
+            const ratingCounts = [0, 0, 0, 0, 0];
+            reviews.forEach(r => ratingCounts[r.rating - 1]++);
+            
+            breakdown.innerHTML = [5, 4, 3, 2, 1].map(stars => {
+                const count = ratingCounts[stars - 1];
+                const percentage = reviews.length > 0 ? (count / reviews.length * 100) : 0;
+                return `
+                    <div class="flex items-center gap-3">
+                        <span class="w-16 text-sm">${stars} stars</span>
+                        <div class="flex-grow bg-gray-700 rounded-full h-3">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full transition-all" style="width: ${percentage}%"></div>
+                        </div>
+                        <span class="w-10 text-sm text-gray-400">${count}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            // Reset filter buttons
+            document.querySelectorAll('.review-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600');
+                btn.classList.add('bg-gray-700');
+            });
+            document.querySelector('.review-filter-btn[data-filter="all"]').classList.add('bg-purple-600');
+            document.querySelector('.review-filter-btn[data-filter="all"]').classList.remove('bg-gray-700');
+            
+            // Render reviews
+            renderReviews();
+        }
+
+        // Render reviews
+        function renderReviews() {
+            const reviews = getProductReviews(currentProductId);
+            let filteredReviews = currentReviewFilter === 'all' 
+                ? reviews 
+                : reviews.filter(r => r.rating === currentReviewFilter);
+            
+            const reviewsList = document.getElementById('reviews-list');
+            const displayReviews = filteredReviews.slice(0, displayedReviews);
+            
+            if (displayReviews.length === 0) {
+                reviewsList.innerHTML = '<p class="text-gray-400 text-center py-8">No reviews match this filter.</p>';
+            } else {
+                reviewsList.innerHTML = displayReviews.map(review => `
+                    <div class="bg-gray-800 rounded-xl p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center font-bold">
+                                        ${review.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                        <div class="font-bold flex items-center gap-2">
+                                            ${review.name}
+                                            ${review.verified ? '<span class="bg-green-600 text-xs px-2 py-0.5 rounded-full">Verified</span>' : ''}
+                                        </div>
+                                        <div class="text-gray-400 text-sm">${formatDate(review.date)}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-1">${generateStars(review.rating)}</div>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">${review.title}</h4>
+                        <p class="text-gray-300 mb-4">${review.content}</p>
+                        <div class="flex items-center gap-4">
+                            <button onclick="markHelpful(${review.id})" class="text-gray-400 hover:text-purple-400 transition text-sm">
+                                <i class="far fa-thumbs-up mr-1"></i> Helpful (${review.helpful})
+                            </button>
+                            <button class="text-gray-400 hover:text-purple-400 transition text-sm">
+                                <i class="far fa-flag mr-1"></i> Report
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Show/hide load more button
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            if (displayedReviews >= filteredReviews.length) {
+                loadMoreBtn.classList.add('hidden');
+            } else {
+                loadMoreBtn.classList.remove('hidden');
+            }
+        }
+
+        // Format date
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        // Filter reviews
+        function filterReviews(filter) {
+            currentReviewFilter = filter;
+            displayedReviews = 3;
+            
+            document.querySelectorAll('.review-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600');
+                btn.classList.add('bg-gray-700');
+            });
+            document.querySelector(`.review-filter-btn[data-filter="${filter}"]`).classList.add('bg-purple-600');
+            document.querySelector(`.review-filter-btn[data-filter="${filter}"]`).classList.remove('bg-gray-700');
+            
+            renderReviews();
+        }
+
+        // Load more reviews
+        function loadMoreReviews() {
+            displayedReviews += 3;
+            renderReviews();
+        }
+
+        // Mark review as helpful
+        function markHelpful(reviewId) {
+            // In production: POST /api/reviews/{id}/helpful
+            for (const productId in reviewsDatabase) {
+                const review = reviewsDatabase[productId].find(r => r.id === reviewId);
+                if (review) {
+                    review.helpful++;
+                    renderReviews();
+                    showToast('Thanks for your feedback!');
+                    break;
+                }
+            }
+        }
+
+        // Scroll to reviews
+        function scrollToReviews() {
+            document.getElementById('reviews-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Open review form
+        function openReviewForm() {
+            document.getElementById('review-form-modal').classList.remove('hidden');
+            resetReviewForm();
+        }
+
+        // Close review form
+        function closeReviewForm() {
+            document.getElementById('review-form-modal').classList.add('hidden');
+        }
+
+        // Reset review form
+        function resetReviewForm() {
+            document.getElementById('review-form').reset();
+            document.getElementById('review-rating').value = 0;
+            document.querySelectorAll('.rating-star').forEach(star => {
+                star.classList.remove('text-yellow-400');
+                star.classList.add('text-gray-600');
+            });
+        }
+
+        // Set review rating
+        function setReviewRating(rating) {
+            document.getElementById('review-rating').value = rating;
+            document.querySelectorAll('.rating-star').forEach((star, idx) => {
+                if (idx < rating) {
+                    star.classList.add('text-yellow-400');
+                    star.classList.remove('text-gray-600');
+                } else {
+                    star.classList.remove('text-yellow-400');
+                    star.classList.add('text-gray-600');
+                }
+            });
+        }
+
+        // Submit review
+        function submitReview(e) {
+            e.preventDefault();
+            
+            const rating = parseInt(document.getElementById('review-rating').value);
+            if (rating === 0) {
+                showToast('Please select a rating');
+                return;
+            }
+            
+            const newReview = {
+                id: Date.now(),
+                productId: currentProductId,
+                name: document.getElementById('review-name').value,
+                rating: rating,
+                title: document.getElementById('review-title').value,
+                content: document.getElementById('review-content').value,
+                date: new Date().toISOString().split('T')[0],
+                helpful: 0,
+                verified: false
+            };
+            
+            // In production: POST /api/products/{id}/reviews
+            if (!reviewsDatabase[currentProductId]) {
+                reviewsDatabase[currentProductId] = [];
+            }
+            reviewsDatabase[currentProductId].unshift(newReview);
+            
+            // Update product rating (simple average)
+            const product = products.find(p => p.id === currentProductId);
+            const allReviews = reviewsDatabase[currentProductId];
+            product.rating = allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length;
+            
+            closeReviewForm();
+            loadReviewsSection(currentProductId);
+            showToast('Review submitted successfully!');
+        }
+
+        // Filter Products
+        function filterProducts(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600');
+                btn.classList.add('bg-gray-700');
+            });
+            document.querySelector(`[data-filter="${filter}"]`).classList.remove('bg-gray-700');
+            document.querySelector(`[data-filter="${filter}"]`).classList.add('bg-purple-600');
+            renderProducts(filter);
+        }
+
+        // Add to Cart (for backwards compatibility)
+        function addToCart(productId) {
+            openProductModal(productId);
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        // Update Quantity in cart
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        // Update Cart Display
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = `${totalPrice.toFixed(2)}`;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-400 text-center">Your cart is empty</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex gap-4 mb-4 pb-4 border-b border-gray-700 slide-in">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
+                        <div class="flex-grow">
+                            <h4 class="font-bold">${item.name}</h4>
+                            <p class="text-purple-400 font-bold">${item.price}</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="updateQuantity(${item.id}, -1)" class="bg-gray-700 px-2 py-1 rounded hover:bg-purple-600 transition">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)" class="bg-gray-700 px-2 py-1 rounded hover:bg-purple-600 transition">+</button>
+                                <button onclick="removeFromCart(${item.id})" class="ml-auto text-red-500 hover:text-red-400">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Toggle Cart Sidebar
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            
+            sidebar.classList.toggle('translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        // Show Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Quick View - now opens product modal
+        function quickView(productId) {
+            openProductModal(productId);
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`Proceeding to checkout...\nTotal: ${total.toFixed(2)}\n\nThank you for shopping with GameZone!`);
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 2);
+            endDate.setHours(endDate.getHours() + 18);
+            
+            function update() {
+                const now = new Date();
+                const diff = endDate - now;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+            
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Close modals on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProductModal();
+                closeReviewForm();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCountdown();
+        });
+    </script>
+</body>
+</html>
