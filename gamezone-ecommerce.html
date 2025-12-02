@@ -68,6 +68,76 @@
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: currentColor;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(12px, 12px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+                padding-top: 80px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 40;
+                overflow-y: auto;
+            }
+            
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-items {
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                gap: 0;
+            }
+            
+            .mobile-menu-items a {
+                padding: 16px 20px;
+                border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+                hover: text-purple-400;
+                transition: background 0.2s ease;
+            }
+            
+            .mobile-menu-items a:hover {
+                background: rgba(99, 102, 241, 0.1);
+                color: #a78bfa;
+            }
+        }
     </style>
 </head>
 <body class="gradient-bg min-h-screen text-white">
@@ -95,10 +165,25 @@
                         <i class="fas fa-shopping-cart text-xl"></i>
                         <span id="cart-count" class="cart-badge absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">0</span>
                     </button>
+                    <button onclick="toggleMobileMenu()" class="hamburger text-white hover:text-purple-400 transition">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-items">
+            <a href="#home" onclick="closeMobileMenu()" class="font-medium">Home</a>
+            <a href="#products" onclick="closeMobileMenu()" class="font-medium">Consoles</a>
+            <a href="#deals" onclick="closeMobileMenu()" class="font-medium">Deals</a>
+            <a href="#about" onclick="closeMobileMenu()" class="font-medium">About</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="pt-24 pb-16 px-4">
@@ -1358,8 +1443,24 @@
             if (e.key === 'Escape') {
                 closeProductModal();
                 closeReviewForm();
+                closeMobileMenu();
             }
         });
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            menu.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
